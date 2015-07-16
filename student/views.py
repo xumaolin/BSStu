@@ -98,11 +98,37 @@ def manage_login(request):
 
 
 def add_student(request):
-    pass
+    if request.method == 'POST':
+        student = Student()
+        student.user_number = request.POST['number']
+        student.password = request.POST['password']
+        student.save()
+        profile = StudentProfile()
+        profile.user = student
+        profile.username = request.POST['username']
+        profile.email = request.POST['email']
+        profile.phone = request.POST['phone']
+        profile.save()
+        return redirect('student_manage')
+    else:
+        return render_to_response('manage/new.html', RequestContext(request))
 
 
 def student_update(request):
-    pass
+    password = request.POST['password']
+    name = request.POST['username']
+    email = request.POST['email']
+    phone = request.POST['phone']
+    number = request.POST['number']
+    student = Student.objects.get(user_number=number)
+    profile = StudentProfile.objects.get(user=student)
+    student.password = password
+    student.save()
+    profile.phone = phone
+    profile.username = name
+    profile.email = email
+    profile.save()
+    return redirect('student_manage')
 
 
 def student_manage(request):
@@ -112,3 +138,21 @@ def student_manage(request):
     context = RequestContext(request)
     context['profiles'] = StudentProfile.objects.all()
     return render_to_response('manage/manage.html', context)
+
+
+def edit_profile(request):
+
+    student = Student.objects.get(user_number=request.GET['number'])
+    profile = StudentProfile.objects.get(user=student)
+    context = RequestContext(request)
+    context['student'] = student
+    context['profile'] = profile
+    return render_to_response('manage/edit.html', context)
+
+
+def delete_student(request):
+    student = Student.objects.get(user_number=request.GET['number'])
+    profile = StudentProfile.objects.get(user=student)
+    profile.delete()
+    student.delete()
+    return redirect('student_manage')

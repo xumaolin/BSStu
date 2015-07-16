@@ -19,6 +19,8 @@ urlpatterns = patterns('',
                        url(r'^manage$', 'student.views.student_manage', name='student_manage'),
                        url(r'^add_student$', 'student.views.add_student', name='add_student'),
                        url(r'^student_update$', 'student.views.student_update', name='student_update'),
+                       url(r'^edit_profile$', 'student.views.edit_profile', name='edit_profile'),
+                       url(r'^delete$', 'student.views.delete_student', name='delete_student'),
 
                        url(r'^$', 'student.views.index'),
                        url(r'^login$', 'student.views.user_login', name='user_login'),

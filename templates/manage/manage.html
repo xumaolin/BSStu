@@ -23,8 +23,8 @@
             <th>{{ profile.email }}</th>
             <th>{{ profile.phone }}</th>
             <th>
-                <a href="#">修改</a>
-                <a href="#">删除</a>
+                <a href="{% url edit_profile %}?number={{ profile.user.user_number }}">修改</a>
+                <a href="{% url delete_student %}?number={{ profile.user.user_number }}">删除</a>
             </th>
         </tr>
         {% endfor %}

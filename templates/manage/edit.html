@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div style="width: 300px; margin: 0 auto; background: #eee; padding: 50px;">
+
+    <form action="{% url student_update %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="number" value="{{ student.user_number }}">
+        <p>Name: <input name="username" type="text" value="{{ profile.username }}"></p>
+        <p>Password: <input name="password" type="password" value="{{ student.password }}"></p>
+        <p>Email: <input name="email" type="email" value="{{ profile.email }}"></p>
+        <p>Phone: <input name="phone" type="text" value="{{ profile.phone }}"></p>
+        <input type="submit" value="Ok">
+    </form>
+
+</div>
+
+</body>
+</html>
