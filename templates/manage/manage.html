@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div style="width: 600px; margin: 0 auto; background: #eee; padding: 50px;">
+
+    <table border="1px;">
+        <tr>
+            <th width="150px;">学号</th>
+            <th width="80px;">姓名</th>
+            <th width="150px;">邮件</th>
+            <th width="150px;">电话</th>
+            <th width="100px;">操作</th>
+        </tr>
+        {% for profile in profiles %}
+        <tr>
+            <th>{{ profile.user.user_number }}</th>
+            <th>{{ profile.username }}</th>
+            <th>{{ profile.email }}</th>
+            <th>{{ profile.phone }}</th>
+            <th>
+                <a href="#">修改</a>
+                <a href="#">删除</a>
+            </th>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="width: 40px; float:right;">
+        <a href="{% url add_student %}">添加</a>
+    </div>
+
+</div>
+
+</body>
+</html>
