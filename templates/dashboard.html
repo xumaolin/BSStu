@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div style="width: 300px; margin: 0 auto; background: #eee; padding: 50px;">
+
+    <form action="{% url update_info %}" method="POST">
+        {% csrf_token %}
+
+        <p>Name:<input name="name" type="text"></p>
+        <p>Phone:<input name="phone" type="text"></p>
+        <p>Email:<input name="email" type="email"></p>
+        <input type="submit" value="Modify">
+    </form>
+
+</div>
+
+</body>
+</html>
